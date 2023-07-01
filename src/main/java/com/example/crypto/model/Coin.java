@@ -2,6 +2,8 @@ package com.example.crypto.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 public class Coin {
     private String id;
     private String name;
@@ -13,6 +15,19 @@ public class Coin {
     private double priceChangePercentage24h;
 
     private double marketCapChangePercentage24h;
+
+    private List<Double> priceList;
+
+    // ... 이전 코드 생략 ...
+
+    public List<Double> getPriceList() {
+        return priceList;
+    }
+
+    public void setPriceList(List<Double> priceList) {
+        this.priceList = priceList;
+    }
+
 
     public Coin() {
     }

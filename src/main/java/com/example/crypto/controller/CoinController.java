@@ -1,7 +1,8 @@
 package com.example.crypto.controller;
+
 import com.example.crypto.model.Coin;
 import com.example.crypto.model.CustomNews;
-import com.example.crypto.model.News;
+import com.example.crypto.model.Chart;
 import com.example.crypto.service.CoinService;
 import com.example.crypto.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 @Controller
-
 public class CoinController {
 
     private final CoinService coinService;
@@ -46,8 +46,18 @@ public class CoinController {
         List<CustomNews> newsList = newsService.getNewsByCoin(coin.getName());
         model.addAttribute("newsList", newsList);
 
+        // 코인 가격 데이터 가져오기
+
+        Chart chart7Days = coinService.getCoinPriceChart(coin.getName(), 7);
+        model.addAttribute("chart7Days", chart7Days);
+
+        Chart chart14Days = coinService.getCoinPriceChart(coin.getName(), 14);
+        model.addAttribute("chart14Days", chart14Days);
+
+        Chart chart30Days = coinService.getCoinPriceChart(coin.getName(), 30);
+        model.addAttribute("chart14Days", chart30Days);
+
+
         return "coin";
-
     }
-
 }
