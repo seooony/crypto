@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>코인 페이지</title>
+    <link rel="stylesheet" type="text/css" href="/css/coin.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+</head>
+<body>
+<section id="header">
+    <div class="wrapper">
+        <div class="title">Crypto</div>
+        <ul class="lists">
+            <li></li>
+            <li>News</li>
+            <li>Chart</li>
+            <li>#</li>
+        </ul>
+        <div class="log">Log In</div>
+    </div>
+</section>
+<div class="main">
+    <div class="top">
+        <div class="top_title">
+            <h1 th:text="${coin.name}"></h1>
+        </div>
+    </div>
+</div>
+
+<div class="wrap">
+    <div class="row">
+        <div class="col-12">
+            <div class="card-columns">
+                <div class="card" th:each="news : ${newsList}">
+                    <img th:src="${news.urlToImage}" class="card-img-top" alt="News Image">
+                    <div class="card-body">
+                        <a th:href="${news.url}" target="_blank" class="card-link">
+                            <h5 class="card-title" th:text="${news.title}"></h5>
+                            <p class="card-text" th:text="${news.description}"></p>
+                        </a>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted" th:text="${news.publishedAt}"></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

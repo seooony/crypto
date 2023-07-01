@@ -7,13 +7,12 @@ public class Coin {
     private String name;
     private String symbol;
     private int rank;
-    private long circulatingSupply;
-    private long totalSupply;
-    private long maxSupply;
-    private double betaValue;
-    private String firstDataAt;
-    private String lastUpdated;
-    private Quotes quotes;
+    private double currentPrice;
+    private long marketCap;
+    private double totalVolume;
+    private double priceChangePercentage24h;
+
+    private double marketCapChangePercentage24h;
 
     public Coin() {
     }
@@ -22,28 +21,24 @@ public class Coin {
             @JsonProperty("id") String id,
             @JsonProperty("name") String name,
             @JsonProperty("symbol") String symbol,
-            @JsonProperty("rank") int rank,
-            @JsonProperty("circulating_supply") long circulatingSupply,
-            @JsonProperty("total_supply") long totalSupply,
-            @JsonProperty("max_supply") long maxSupply,
-            @JsonProperty("beta_value") double betaValue,
-            @JsonProperty("first_data_at") String firstDataAt,
-            @JsonProperty("last_updated") String lastUpdated,
-            @JsonProperty("quotes") Quotes quotes) {
+            @JsonProperty("market_cap_rank") int rank,
+            @JsonProperty("current_price") double currentPrice,
+            @JsonProperty("market_cap") long marketCap,
+            @JsonProperty("total_volume") double totalVolume,
+            @JsonProperty("price_change_percentage_24h") double priceChangePercentage24h,
+            @JsonProperty("market_cap_change_percentage_24h") double marketCapChangePercentage24h) {
         this.id = id;
         this.name = name;
         this.symbol = symbol;
         this.rank = rank;
-        this.circulatingSupply = circulatingSupply;
-        this.totalSupply = totalSupply;
-        this.maxSupply = maxSupply;
-        this.betaValue = betaValue;
-        this.firstDataAt = firstDataAt;
-        this.lastUpdated = lastUpdated;
-        this.quotes = quotes;
+        this.currentPrice = currentPrice;
+        this.marketCap = marketCap;
+        this.totalVolume = totalVolume;
+        this.priceChangePercentage24h = priceChangePercentage24h;
+        this.marketCapChangePercentage24h = marketCapChangePercentage24h;
     }
 
-    // Getter and setter methods
+    // Getter and Setter methods
 
     public String getId() {
         return id;
@@ -77,59 +72,43 @@ public class Coin {
         this.rank = rank;
     }
 
-    public long getCirculatingSupply() {
-        return circulatingSupply;
+    public double getCurrentPrice() {
+        return currentPrice;
     }
 
-    public void setCirculatingSupply(long circulatingSupply) {
-        this.circulatingSupply = circulatingSupply;
+    public void setCurrentPrice(double currentPrice) {
+        this.currentPrice = currentPrice;
     }
 
-    public long getTotalSupply() {
-        return totalSupply;
+    public long getMarketCap() {
+        return marketCap;
     }
 
-    public void setTotalSupply(long totalSupply) {
-        this.totalSupply = totalSupply;
+    public void setMarketCap(long marketCap) {
+        this.marketCap = marketCap;
     }
 
-    public long getMaxSupply() {
-        return maxSupply;
+    public double getTotalVolume() {
+        return totalVolume;
     }
 
-    public void setMaxSupply(long maxSupply) {
-        this.maxSupply = maxSupply;
+    public void setTotalVolume(double totalVolume) {
+        this.totalVolume = totalVolume;
     }
 
-    public double getBetaValue() {
-        return betaValue;
+    public double getPriceChangePercentage24h() {
+        return priceChangePercentage24h;
     }
 
-    public void setBetaValue(double betaValue) {
-        this.betaValue = betaValue;
+    public void setPriceChangePercentage24h(double priceChangePercentage24h) {
+        this.priceChangePercentage24h = priceChangePercentage24h;
     }
 
-    public String getFirstDataAt() {
-        return firstDataAt;
+    public double getMarketCapChangePercentage24h() {
+        return marketCapChangePercentage24h;
     }
 
-    public void setFirstDataAt(String firstDataAt) {
-        this.firstDataAt = firstDataAt;
-    }
-
-    public String getLastUpdated() {
-        return lastUpdated;
-    }
-
-    public void setLastUpdated(String lastUpdated) {
-        this.lastUpdated = lastUpdated;
-    }
-
-    public Quotes getQuotes() {
-        return quotes;
-    }
-
-    public void setQuotes(Quotes quotes) {
-        this.quotes = quotes;
+    public void setMarketCapChangePercentage24h(double marketCapChangePercentage24h) {
+        this.marketCapChangePercentage24h = marketCapChangePercentage24h;
     }
 }
