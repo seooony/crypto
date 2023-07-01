@@ -28,11 +28,23 @@
         <div class="top_title">
             <h1 th:text="${coin.name}"></h1>
         </div>
-        <canvas id="coinChart7Days"></canvas>
-        <canvas id="coinChart14Days"></canvas>
-        <canvas id="coinChart30Days"></canvas>
+        <div class="chart-container">
+            <div class="chart-wrapper">
+                <h4>7일 시세 변동</h4>
+                <canvas id="coinChart7Days"></canvas>
+            </div>
+            <div class="chart-wrapper">
+                <h4>14일 시세 변동</h4>
+                <canvas id="coinChart14Days"></canvas>
+            </div>
+            <div class="chart-wrapper">
+                <h4>30일 시세 변동</h4>
+                <canvas id="coinChart30Days"></canvas>
+            </div>
+        </div>
     </div>
 </div>
+
 <div class="wrap">
     <div class="row">
         <div class="col-12">

@@ -1,4 +1,4 @@
-* {
+ * {
             list-style: none;
             text-decoration: none;
             margin: 0;
@@ -82,28 +82,20 @@
             text-decoration: none;
         }
 
-        #coinChart {
-            width: 1000px !important;
-            height: 500px !important;
-            display: block;
-        }
+        #coinChart7Days,
+#coinChart14Days,
+#coinChart30Days {
+    width: 500px !important;
+    height: 250px !important;
+    display: block;
+}
+.chart-container {
+    display: flex;
+    justify-content: space-between;
+}
 
-        /* 추가된 CSS 코드 */
-        @media (max-width: 768px) {
-            .title {
-                margin-left: 100px;
-            }
+.chart-wrapper {
+    width: 30%;
+    margin: 10px;
+}
 
-            .log {
-                margin-right: 100px;
-            }
-
-            .wrap {
-                width: 100%;
-                padding: 0 10px;
-            }
-
-            .card-columns {
-                column-count: 1;
-            }
-        }
