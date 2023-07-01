@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>암호화폐 실시간 TOP 100</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<section id="header">
+    <div class="wrapper">
+        <div class="title">Crypto</div>
+        <ul class="lists">
+            <li></li>
+            <li>News</li>
+            <li>Chart</li>
+            <li>#</li>
+        </ul>
+        <div class="log">Log In</div>
+    </div>
+</section>
+<div class="main">
+    <div class="top">
+        <div class="top_title">
+            <h1>암호화폐 실시간 TOP 100</h1>
+        </div>
+        <div class="top_btn_container">
+            <button class="top_btn" onclick="refreshPage()"><img src="./img/update.png"/></button>
+        </div>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>순위</th>
+            <th>종목</th>
+            <th>기호</th>
+            <th>가격(KRW)</th>
+            <th>총 시가</th>
+            <th>거래량(24H)</th>
+            <th>변동(24H)</th>
+            <th>변동(7D)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="coin : ${coins}">
+            <td th:text="${coin.rank}"></td>
+            <td th:text="${coin.name}"></td>
+            <td th:text="${coin.symbol}"></td>
+            <td>₩<span th:text="${#numbers.formatDecimal(coin.quotes.KRW.price, 0, 2)}"></span></td>
+            <td th:text="${coin.quotes.KRW.marketCap}"></td>
+            <td th:text="${#numbers.formatDecimal(coin.quotes.KRW.volume24h, 0, 2)}"></td>
+            <td th:text="${coin.quotes.KRW.percentChange24h} + '%'"></td>
+            <td th:text="${coin.quotes.KRW.percentChange7d} + '%'"></td>
+        </tr>
+        </tbody>
+    </table>
+    <canvas id="lineChart"></canvas>
+</div>
+
+<script>
+    function refreshPage() {
+        location.reload();
+    }
+
+    var percentChange7dData = JSON.parse("{{coin.quotes.KRW.percentChange7d}}");
+
+    var ctx = document.getElementById("lineChart").getContext("2d");
+    var lineChart = new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"],
+            datasets: [{
+                label: "Percent Change 7D",
+                data: percentChange7dData,
+                backgroundColor: "rgba(0, 123, 255, 0.3)",
+                borderColor: "rgba(0, 123, 255, 1)",
+                borderWidth: 2,
+                pointRadius: 0,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    }
+                },
+                y: {
+                    grid: {
+                        color: "rgba(0, 0, 0, 0.1)",
+                        borderDash: [2, 2]
+                    },
+                    ticks: {
+                        beginAtZero: true,
+                        callback: function(value, index, values) {
+                            return value + "%";
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>
