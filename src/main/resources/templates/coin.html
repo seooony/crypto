@@ -17,12 +17,10 @@
     <div class="wrapper">
         <div class="title">Crypto</div>
         <ul class="lists">
-            <li></li>
             <li>News</li>
             <li>Chart</li>
-            <li>#</li>
         </ul>
-        <div class="log">Log In</div>
+        <div class="log"></div>
     </div>
 </section>
 <div class="main">
@@ -59,7 +57,7 @@
     var coinSymbol = "[[${coin.id}]]";
 
     // Coin 가격 데이터 가져오기
-    function getCoinPriceChart(url, chartId) {
+    function getCoinPriceChart(url, chartId, maxTicks) {
         fetch(url)
             .then(response => response.json())
             .then(data => {
@@ -90,6 +88,7 @@
                                     }
                                 },
                                 ticks: {
+                                    maxTicksLimit: maxTicks, // 최대 x축 라벨 표시 개수 설정
                                     source: 'labels'
                                 }
                             },
@@ -114,9 +113,9 @@
         var priceUrl14Days = `https://api.coingecko.com/api/v3/coins/${coinSymbol}/market_chart?vs_currency=krw&days=14`;
         var priceUrl30Days = `https://api.coingecko.com/api/v3/coins/${coinSymbol}/market_chart?vs_currency=krw&days=30`;
 
-        getCoinPriceChart(priceUrl7Days, 'coinChart7Days');
-        getCoinPriceChart(priceUrl14Days, 'coinChart14Days');
-        getCoinPriceChart(priceUrl30Days, 'coinChart30Days');
+        getCoinPriceChart(priceUrl7Days, 'coinChart7Days', 7);
+        getCoinPriceChart(priceUrl14Days, 'coinChart14Days', 14);
+        getCoinPriceChart(priceUrl30Days, 'coinChart30Days', 30);
     });
 </script>
 </body>
