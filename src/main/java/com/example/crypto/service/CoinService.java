@@ -13,8 +13,8 @@ import java.util.List;
 @Service
 public class CoinService {
 
-    private static final String API_URL = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=krw";
-    private static final String PRICE_API_URL = "https://api.coingecko.com/api/v3/coins/{coinName}/market_chart?vs_currency=krw&days={days}";
+    private static final String API_URL = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd";
+    private static final String PRICE_API_URL = "https://api.coingecko.com/api/v3/coins/{coinName}/market_chart?vs_currency=usd&days={days}";
 
 
     public List<Coin> getTop100Coins() {
