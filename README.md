@@ -20,3 +20,4 @@ Crypto 프로젝트는 암호화폐에 대한 종합적인 정보를 제공하�
 ![image](https://github.com/seooony/crypto/assets/123749297/4f6493df-c335-4b5c-acf3-84656965344a)
 ![image](https://github.com/seooony/crypto/assets/123749297/9a009c6a-d06d-4d85-84f1-41c7b64aaccb)
 ![image](https://github.com/seooony/crypto/assets/123749297/acfd0ca0-c361-4562-9164-4efa56d52653)
+![image](https://github.com/seooony/crypto/assets/123749297/e0be9b31-6af3-4a77-9441-65b92603e7fa)
