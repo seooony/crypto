@@ -33,7 +33,7 @@
             <th>기호</th>
             <th>가격</th>
             <th>총 시가</th>
-            <th>거래량(24H)</th>
+            <th>총 거래량</th>
             <th>가격 변동(24H)</th>
             <th>시가 총액 변동(24H)</th>
         </tr>
@@ -50,8 +50,8 @@
 
             <td th:text="${coin.symbol}"></td>
             <td th:text="${coin.currentPrice}"></td>
-            <td>$<span th:text="${#numbers.formatDecimal(coin.marketCap, 0, 2)}"></span></td>
-            <td th:text="${#numbers.formatDecimal(coin.totalVolume, 0, 2)}"></td>
+            <td>$<span th:text="${coin.marketCap}"></span></td>
+            <td th:text="${coin.totalVolume}"></td>
             <td th:text="${coin.priceChangePercentage24h} + '%'"></td>
             <td th:text="${coin.marketCapChangePercentage24h + '%'}"></td>
         </tr>
