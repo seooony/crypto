@@ -17,7 +17,7 @@ Crypto 프로젝트는 암호화폐에 대한 종합적인 정보를 제공하�
 - 관련 뉴스 제공
 
 ## 스크린샷
-
-![image](https://github.com/seooony/crypto/assets/123749297/aa988ba1-9066-448b-8ec6-aa551c6e7db5)
-![image](https://github.com/seooony/crypto/assets/123749297/384ec2aa-2138-45eb-a779-7cd257772693)
-![image](https://github.com/seooony/crypto/assets/123749297/6dbf6645-e446-41cf-872a-f48cb1d2d5dc)
+![image](https://github.com/seooony/crypto/assets/123749297/4f6493df-c335-4b5c-acf3-84656965344a)
+![image](https://github.com/seooony/crypto/assets/123749297/9a009c6a-d06d-4d85-84f1-41c7b64aaccb)
+![image](https://github.com/seooony/crypto/assets/123749297/acfd0ca0-c361-4562-9164-4efa56d52653)
+![image](https://github.com/seooony/crypto/assets/123749297/e0be9b31-6af3-4a77-9441-65b92603e7fa)
