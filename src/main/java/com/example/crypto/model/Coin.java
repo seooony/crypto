@@ -7,6 +7,7 @@ import java.util.List;
 public class Coin {
     private String id;
     private String name;
+    private String image;
     private String symbol;
     private int rank;
     private double currentPrice;
@@ -35,6 +36,7 @@ public class Coin {
     public Coin(
             @JsonProperty("id") String id,
             @JsonProperty("name") String name,
+            @JsonProperty("image") String image,
             @JsonProperty("symbol") String symbol,
             @JsonProperty("market_cap_rank") int rank,
             @JsonProperty("current_price") double currentPrice,
@@ -44,6 +46,7 @@ public class Coin {
             @JsonProperty("market_cap_change_percentage_24h") double marketCapChangePercentage24h) {
         this.id = id;
         this.name = name;
+        this.image = image;
         this.symbol = symbol;
         this.rank = rank;
         this.currentPrice = currentPrice;
@@ -69,6 +72,14 @@ public class Coin {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getSymbol() {

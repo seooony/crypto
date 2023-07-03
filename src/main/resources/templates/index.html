@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>암호화폐 실시간 TOP 100</title>
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <script>
+    function refreshPage() {
+        location.reload();
+    }
+    </script>
 </head>
 <body>
 <section id="header">
     <div class="wrapper">
-        <div class="title">Crypto</div>
-        <ul class="lists">
-            <li>News</li>
-            <li>Chart</li>
-        </ul>
-        <div class="log"></div>
+        <div class="title" onclick="refreshPage()">Crypto</div>
     </div>
 </section>
 <div class="main">
@@ -42,30 +42,23 @@
         <tr th:each="coin : ${coins}">
             <td th:text="${coin.rank}"></td>
             <td>
-                <a th:href="@{/coin/{coinId}(coinId=${coin.id})}"
-                   th:text="${coin.name}"
-                   class="coin-link">
+                <img alt="Image" class="coin-img" th:src="${coin.image}">
+                <a class="coin-link"
+                   th:href="@{/coin/{coinId}(coinId=${coin.id})}"
+                   th:text="${coin.name}">
                 </a>
             </td>
 
             <td th:text="${coin.symbol}"></td>
-            <td th:text="${coin.currentPrice}"></td>
+            <td>$<span th:text="${coin.currentPrice}"></span></td>
             <td>$<span th:text="${coin.marketCap}"></span></td>
             <td th:text="${coin.totalVolume}"></td>
             <td th:text="${coin.priceChangePercentage24h} + '%'"></td>
             <td th:text="${coin.marketCapChangePercentage24h + '%'}"></td>
         </tr>
-
         </tbody>
     </table>
 
 </div>
-
-<script>
-    function refreshPage() {
-        location.reload();
-    }
-
-</script>
 </body>
 </html>
