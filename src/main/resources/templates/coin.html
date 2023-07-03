@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>CoinInfo</title>
-    <link rel="stylesheet" type="text/css" href="/css/coin.css">
+    <link href="/css/coin.css" rel="stylesheet" type="text/css">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1"></script>
     <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.1"></script>
+    <script>
+    function refreshPage() {
+        location.reload();
+    }
+    </script>
 </head>
 <body>
 <section id="header">
     <div class="wrapper">
-        <div class="title">Crypto</div>
-        <ul class="lists">
-            <li>News</li>
-            <li>Chart</li>
-        </ul>
-        <div class="log"></div>
+        <div class="title" onclick="refreshPage()">Crypto</div>
     </div>
 </section>
 <div class="main">
@@ -50,9 +50,9 @@
         <div class="col-12">
             <div class="card-columns">
                 <div class="card" th:each="news : ${newsList}">
-                    <img th:src="${news.urlToImage}" class="card-img-top" alt="News Image">
+                    <img alt="News Image" class="card-img-top" th:src="${news.urlToImage}">
                     <div class="card-body">
-                        <a th:href="${news.url}" target="_blank" class="card-link">
+                        <a class="card-link" target="_blank" th:href="${news.url}">
                             <h5 class="card-title" th:text="${news.title}"></h5>
                             <p class="card-text" th:text="${news.description}"></p>
                         </a>
@@ -129,6 +129,7 @@
         getCoinPriceChart(priceUrl14Days, 'coinChart14Days', 14);
         getCoinPriceChart(priceUrl30Days, 'coinChart30Days', 30);
     });
+
 </script>
 </body>
 </html>
