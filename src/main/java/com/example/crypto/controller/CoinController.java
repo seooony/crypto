@@ -47,7 +47,6 @@ public class CoinController {
         model.addAttribute("newsList", newsList);
 
         // 코인 가격 데이터 가져오기
-
         Chart chart7Days = coinService.getCoinPriceChart(coin.getName(), 7);
         model.addAttribute("chart7Days", chart7Days);
 
