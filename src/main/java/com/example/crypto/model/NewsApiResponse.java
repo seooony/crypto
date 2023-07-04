@@ -1,9 +1,6 @@
 package com.example.crypto.model;
 
 import com.example.crypto.model.CustomNews;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.example.crypto.model.CustomNews;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 

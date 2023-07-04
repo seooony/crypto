@@ -15,6 +15,98 @@
     function refreshPage() {
         location.reload();
     }
+
+    // x 좌표를 날짜로 변환하는 함수
+    function convertXToDateString(x) {
+        var timestamp = x;
+        var date = new Date(timestamp);
+        var dateString = date.toISOString();
+        return dateString;
+    }
+
+    // 날짜를 원하는 형식으로 포맷팅하는 함수
+    function formatDate(dateString) {
+        var date = new Date(dateString);
+        var formattedDate = moment(date).format('YYYY-MM-DDTHH:mm:ssZ');
+        return formattedDate;
+    }
+
+    // Coin 가격 데이터 가져오기
+    function getCoinPriceChart(url, chartId, maxTicks) {
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                var chartData = {
+                    labels: data.prices.map(entry => entry[0]), // 날짜 데이터는 prices 배열의 첫 번째 요소로 변경
+                    datasets: [{
+                        label: 'Price',
+                        data: data.prices.map(entry => entry[1]), // 가격 데이터는 prices 배열의 두 번째 요소로 변경
+                        borderColor: 'blue',
+                        fill: false
+                    }]
+                };
+
+                // 차트 그리기
+                var ctx = document.getElementById(chartId).getContext('2d');
+                var chart = new Chart(ctx, {
+                    type: 'line',
+                    data: chartData,
+                    options: {
+                        responsive: true,
+                        scales: {
+                            x: {
+                                type: 'time',
+                                time: {
+                                    unit: 'day',
+                                    displayFormats: {
+                                        day: 'MMM D'
+                                    }
+                                },
+                                ticks: {
+                                    maxTicksLimit: maxTicks, // 최대 x축 라벨 표시 개수 설정
+                                    source: 'labels'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Price (KRW)'
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // 클릭 이벤트 핸들러 추가
+                ctx.canvas.addEventListener('click', function(event) {
+                    var activePoints = chart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, true);
+                    if (activePoints.length > 0) {
+                        var firstPoint = activePoints[0];
+                        var label = chart.data.labels[firstPoint.index];
+                        var clickedDate = convertXToDateString(label);
+                        var formattedDate = formatDate(clickedDate); // 원하는 형식으로 날짜 포맷팅
+                        console.log('Clicked date:', formattedDate);
+                        // TODO: 클릭한 날짜를 사용하여 뉴스를 가져와서 표시하는 로직 추가
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    // 페이지 로드 시 차트 그리기
+    window.addEventListener('load', function() {
+        var coinSymbol = "[[${coin.id}]]";
+        var priceUrl7Days = `https://api.coingecko.com/api/v3/coins/${coinSymbol}/market_chart?vs_currency=krw&days=7`;
+        var priceUrl14Days = `https://api.coingecko.com/api/v3/coins/${coinSymbol}/market_chart?vs_currency=krw&days=14`;
+        var priceUrl30Days = `https://api.coingecko.com/api/v3/coins/${coinSymbol}/market_chart?vs_currency=krw&days=30`;
+
+        getCoinPriceChart(priceUrl7Days, 'coinChart7Days', 7);
+        getCoinPriceChart(priceUrl14Days, 'coinChart14Days', 14);
+        getCoinPriceChart(priceUrl30Days, 'coinChart30Days', 30);
+    });
+
     </script>
 </head>
 <body>
@@ -48,88 +140,23 @@
 <div class="wrap">
     <div class="row">
         <div class="col-12">
-            <div class="card-columns">
-                <div class="card" th:each="news : ${newsList}">
-                    <img alt="News Image" class="card-img-top" th:src="${news.urlToImage}">
-                    <div class="card-body">
-                        <a class="card-link" target="_blank" th:href="${news.url}">
-                            <h5 class="card-title" th:text="${news.title}"></h5>
-                            <p class="card-text" th:text="${news.description}"></p>
-                        </a>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted" th:text="${news.publishedAt}"></small>
+            <div class="row">
+                <div class="col-4" th:each="news, iterStat : ${newsList}">
+                    <div class="card">
+                        <img alt="News Image" class="card-img-top" th:src="${news.urlToImage}" onerror="this.src='/img/no_image.png';">
+                        <div class="card-body">
+                            <a class="card-link" target="_blank" th:href="${news.url}">
+                                <h5 class="card-title" th:text="${news.title}"></h5>
+                                <p class="card-text" th:text="${news.description}"></p>
+                            </a>
+                            <small class="text-muted" th:text="${news.publishedAt}"></small>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script>
-    var coinSymbol = "[[${coin.id}]]";
 
-    // Coin 가격 데이터 가져오기
-    function getCoinPriceChart(url, chartId, maxTicks) {
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                var chartData = {
-                    labels: data.prices.map(entry => entry[0]), // 날짜 데이터는 prices 배열의 첫 번째 요소로 변경
-                    datasets: [{
-                        label: 'Price',
-                        data: data.prices.map(entry => entry[1]), // 가격 데이터는 prices 배열의 두 번째 요소로 변경
-                        borderColor: 'blue',
-                        fill: false
-                    }]
-                };
-
-                // 차트 그리기
-                var ctx = document.getElementById(chartId).getContext('2d');
-                new Chart(ctx, {
-                    type: 'line',
-                    data: chartData,
-                    options: {
-                        responsive: true,
-                        scales: {
-                            x: {
-                                type: 'time',
-                                time: {
-                                    unit: 'day',
-                                    displayFormats: {
-                                        day: 'MMM D'
-                                    }
-                                },
-                                ticks: {
-                                    maxTicksLimit: maxTicks, // 최대 x축 라벨 표시 개수 설정
-                                    source: 'labels'
-                                }
-                            },
-                            y: {
-                                title: {
-                                    display: true,
-                                    text: 'Price (KRW)'
-                                }
-                            }
-                        }
-                    }
-                });
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
-
-    // 페이지 로드 시 차트 그리기
-    window.addEventListener('load', function() {
-        var priceUrl7Days = `https://api.coingecko.com/api/v3/coins/${coinSymbol}/market_chart?vs_currency=krw&days=7`;
-        var priceUrl14Days = `https://api.coingecko.com/api/v3/coins/${coinSymbol}/market_chart?vs_currency=krw&days=14`;
-        var priceUrl30Days = `https://api.coingecko.com/api/v3/coins/${coinSymbol}/market_chart?vs_currency=krw&days=30`;
-
-        getCoinPriceChart(priceUrl7Days, 'coinChart7Days', 7);
-        getCoinPriceChart(priceUrl14Days, 'coinChart14Days', 14);
-        getCoinPriceChart(priceUrl30Days, 'coinChart30Days', 30);
-    });
-
-</script>
 </body>
 </html>

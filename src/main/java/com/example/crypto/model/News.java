@@ -1,7 +1,5 @@
 package com.example.crypto.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class News {
     private String author;
     private String title;
@@ -21,8 +19,6 @@ public class News {
     public void setSummary(String summary) {
         this.summary = summary;
     }
-
-
 
     public News() {
     }
@@ -91,7 +87,6 @@ public class News {
         this.source = source;
     }
 
-    // imageUrl에 대한 getter와 setter 추가
     public String getImageUrl() {
         return imageUrl;
     }
@@ -99,6 +94,7 @@ public class News {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
     public static class Source {
         private String id;
         private String name;
