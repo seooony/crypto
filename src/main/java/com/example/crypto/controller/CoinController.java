@@ -36,7 +36,6 @@ public class CoinController {
     public String getCoinPage(@PathVariable("coinId") String coinId, Model model) {
         Coin coin = coinService.getCoinById(coinId);
         if (coin == null) {
-            // 적절한 오류 처리를 수행하거나 오류 페이지로 리다이렉트 등을 처리
             return "error";
         }
 

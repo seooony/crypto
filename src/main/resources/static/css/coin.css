@@ -90,11 +90,12 @@ h4 {
     column-gap: 1rem;
 }
 
- .card-img-top {
-        max-width: 100%;
-        max-height: 200px; /* 원하는 높이로 조절해보세요 */
-        object-fit: contain; /* 이미지를 비율을 유지하며 요소에 맞게 표시합니다 */
-    }
+.card-img-top {
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+}
+
 .card {
     border-radius: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

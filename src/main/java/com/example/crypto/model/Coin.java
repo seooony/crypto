@@ -19,8 +19,6 @@ public class Coin {
 
     private List<Double> priceList;
 
-    // ... 이전 코드 생략 ...
-
     public List<Double> getPriceList() {
         return priceList;
     }
@@ -55,8 +53,6 @@ public class Coin {
         this.priceChangePercentage24h = priceChangePercentage24h;
         this.marketCapChangePercentage24h = marketCapChangePercentage24h;
     }
-
-    // Getter and Setter methods
 
     public String getId() {
         return id;

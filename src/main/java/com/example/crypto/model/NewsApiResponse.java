@@ -1,6 +1,5 @@
 package com.example.crypto.model;
 
-import com.example.crypto.model.CustomNews;
 
 import java.util.List;
 

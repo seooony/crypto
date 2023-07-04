@@ -23,7 +23,7 @@ public class CoinService {
         Coin[] coins = restTemplate.getForObject(url, Coin[].class);
         List<Coin> coinList = Arrays.asList(coins);
         if (coinList.size() > 100) {
-            coinList = coinList.subList(0, 100); // 상위 100개만 유지
+            coinList = coinList.subList(0, 100); // 상위 100개만
         }
         return coinList;
     }

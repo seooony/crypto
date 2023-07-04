@@ -45,7 +45,7 @@ public class NewsService {
             news.setDescription(customNews.getDescription());
             news.setUrl(customNews.getUrl());
             news.setUrlToImage(customNews.getUrlToImage());
-            news.setPublishedAt(customNews.getPublishedAt().toString()); // LocalDateTime을 String으로 변환
+            news.setPublishedAt(customNews.getPublishedAt().toString());
             news.setContent(customNews.getContent());
             news.setSource(customNews.getSource());
             newsList.add(news);

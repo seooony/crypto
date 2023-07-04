@@ -9,7 +9,7 @@ public class News {
     private String publishedAt;
     private String content;
     private Source source;
-    private String imageUrl; // imageUrl 속성 추가
+    private String imageUrl;
     private String summary;
 
     public String getSummary() {
